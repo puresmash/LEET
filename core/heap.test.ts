@@ -1,4 +1,4 @@
-import { MaxHeap } from './heap';
+import { BasicMaxHeap, MaxHeap } from './heap';
 
 /*
   Explanation of heapify process for a max heap:
@@ -62,8 +62,8 @@ import { MaxHeap } from './heap';
   4  8 3 1
 */
 
-describe('Basic features on a MaxHeap', () => {
-  const maxHeap = new MaxHeap([1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17]);
+describe('Basic features on a BasicMaxHeap', () => {
+  const maxHeap = new BasicMaxHeap([1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17]);
   test('build max heap should meet the max heap properties', () => {
     expect(maxHeap.peekAll()).toEqual([17, 15, 13, 9, 6, 5, 10, 4, 8, 3, 1]);
   });
@@ -83,6 +83,23 @@ describe('Basic features on a MaxHeap', () => {
     expect(maxHeap.pop()).toBe(3);
     expect(maxHeap.pop()).toBe(1);
     expect(maxHeap.pop()).toBe(-1);
+    expect(maxHeap.size()).toBe(0);
+  });
+});
+
+describe('Basic features on a MaxHeap', () => {
+  const maxHeap = new MaxHeap([['a', 2], ['b', 3], ['c', 1]]);
+  test('build max heap should meet the max heap properties', () => {
+    expect(maxHeap.peekAll()).toEqual([['b', 3], ['a', 2], ['c', 1]]);
+  });
+  test('size should return the number of elements inside the heap', () => {
+    expect(maxHeap.size()).toBe(3);
+  });
+  test('pop should return the largest element inside the heap', () => {
+    expect(maxHeap.pop()).toEqual(['b', 3]);
+    expect(maxHeap.pop()).toEqual(['a', 2]);
+    expect(maxHeap.pop()).toEqual(['c', 1]);
+    expect(maxHeap.pop()).toBe(undefined);
     expect(maxHeap.size()).toBe(0);
   });
 });
