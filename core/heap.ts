@@ -130,3 +130,17 @@ export class MaxHeap {
     return this.length;
   }
 }
+
+/**
+ * Count the frequency of each character in the string without sorting.
+ * Time complexity: O(n)
+ * e.g.
+ * ['t', 'r', 'e', 'e'] -> Map [['t', 1], ['r', 1], ['e', 2]]
+ */
+export function countFrequency(array: string[]) {
+  const freqMap = new Map<string, number>();
+  array.forEach(char => {
+    freqMap.set(char, (freqMap.get(char) || 0) + 1);
+  });
+  return freqMap;
+}

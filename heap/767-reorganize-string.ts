@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { MaxHeap } from '../core/heap.js';
+import { MaxHeap, countFrequency } from '../core/heap.js';
 
 /**
  * Heap, Greedy
@@ -9,7 +9,7 @@ import { MaxHeap } from '../core/heap.js';
  * There is a shortcut: if the most frequent char is more than half of the string, then it's impossible to reorganize the string.
  */
 function reorganizeString(s: string): string {
-  const freqMap = countFrequency(s);
+  const freqMap = countFrequency(Array.from(s));
   const heap = new MaxHeap(Array.from(freqMap.entries()));
   let result = '', prev = null as [string, number] | null;
   while (heap.size() !== 0) {
@@ -24,14 +24,6 @@ function reorganizeString(s: string): string {
   }
   if (prev && prev[1] > 0) return '';
   return result;
-};
-
-function countFrequency(s: string) {
-  const freqMap = new Map<string, number>();
-  Array.from(s).forEach(char => {
-    freqMap.set(char, (freqMap.get(char) || 0) + 1);
-  });
-  return freqMap;
 }
 
 expect(reorganizeString('aab')).to.equal('aba');
