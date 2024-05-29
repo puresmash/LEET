@@ -1,4 +1,4 @@
-import { BasicMaxHeap, MaxHeap } from './heap';
+import { MaxHeap, MinHeap } from './heap';
 
 /*
   Explanation of heapify process for a max heap:
@@ -62,8 +62,8 @@ import { BasicMaxHeap, MaxHeap } from './heap';
   4  8 3 1
 */
 
-describe('Basic features on a BasicMaxHeap', () => {
-  const maxHeap = new BasicMaxHeap([1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17]);
+describe('MaxHeap without a key', () => {
+  const maxHeap = new MaxHeap<number>([1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17]);
   test('build max heap should meet the max heap properties', () => {
     expect(maxHeap.peekAll()).toEqual([17, 15, 13, 9, 6, 5, 10, 4, 8, 3, 1]);
   });
@@ -82,12 +82,24 @@ describe('Basic features on a BasicMaxHeap', () => {
     expect(maxHeap.pop()).toBe(4);
     expect(maxHeap.pop()).toBe(3);
     expect(maxHeap.pop()).toBe(1);
-    expect(maxHeap.pop()).toBe(-1);
+    expect(maxHeap.pop()).toBe(undefined);
     expect(maxHeap.size()).toBe(0);
   });
 });
 
-describe('Basic features on a MaxHeap', () => {
+describe('MinHeap without a key', () => {
+  const minHeap = new MinHeap<number>([2, 1, 3]);
+  test('pop should return the smallest element inside the heap', () => {
+    expect(minHeap.peekAll()).toEqual([1, 2, 3]);
+    expect(minHeap.pop()).toBe(1);
+    expect(minHeap.pop()).toBe(2);
+    expect(minHeap.pop()).toBe(3);
+    expect(minHeap.pop()).toBe(undefined);
+    expect(minHeap.size()).toBe(0);
+  });
+});
+
+describe('MaxHeap with a key', () => {
   const maxHeap = new MaxHeap([['a', 2], ['b', 3], ['c', 1]]);
   test('build max heap should meet the max heap properties', () => {
     expect(maxHeap.peekAll()).toEqual([['b', 3], ['a', 2], ['c', 1]]);
