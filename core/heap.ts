@@ -1,28 +1,23 @@
 type Tuple = [string, number];
 export class MaxHeap<T extends Tuple | number> {
-  // In order to save the shift operation on the array, we choose to maintain the length on our own.
-  // There is the possibility to have undefined in the array, but we shouldn't let it happens.
-  protected array: (T | undefined)[] = [];
-  private length = 0;
+  protected array: T[] = [];
   constructor(array: T[]) {
     this.buildMaxHeap(array);
-    this.length = this.array.length;
   }
   /** Time complexity: O(logn) */
   pop() {
-    if (this.length === 0) return undefined;
-    const result = this.array[0];
-    this.array[0] = this.array[this.length - 1];
-    this.array[this.length - 1] = undefined;
-    this.length--;
+    if (this.array.length === 0) return undefined;
+    const last = this.array.length - 1;
+    // By swapping the head and the tail, we can use pop() <- O(1) instead of shift() <- O(n).
+    [this.array[0], this.array[last]] = [this.array[last], this.array[0]];
+    const result = this.array.pop();
     this.heapifyDown(0);
     return result;
   }
   /** Time complexity: O(logn) */
   push(tuple: T) {
-    this.array[this.length] = tuple;
-    this.length++;
-    this.heapifyUp(this.length - 1);
+    this.array[this.array.length] = tuple;
+    this.heapifyUp(this.array.length - 1);
   }
   /**
    * Return true if need to swap, false otherwise.
@@ -37,7 +32,7 @@ export class MaxHeap<T extends Tuple | number> {
     const parent = Math.floor((i - 1) / 2);
     // Already reached the root, end recursion
     if (parent === -1) return;
-    if (this.compareToSwap(this.array[i]!, this.array[parent]!)) {
+    if (this.compareToSwap(this.array[i], this.array[parent])) {
       this.swap(i, parent);
       this.heapifyUp(parent);
     }
@@ -47,10 +42,10 @@ export class MaxHeap<T extends Tuple | number> {
     const right = i * 2 + 2;
     let largest = i;
     // Finding the largest among the current node and its children
-    if (this.array[left] !== undefined && this.compareToSwap(this.array[left]!, this.array[largest]!)) {
+    if (this.array[left] !== undefined && this.compareToSwap(this.array[left], this.array[largest])) {
       largest = left;
     }
-    if (this.array[right] !== undefined && this.compareToSwap(this.array[right]!, this.array[largest]!)) {
+    if (this.array[right] !== undefined && this.compareToSwap(this.array[right], this.array[largest])) {
       largest = right;
     }
     // Recursive end condition
@@ -74,13 +69,13 @@ export class MaxHeap<T extends Tuple | number> {
     this.array[j] = temp;
   }
   peekAll() {
-    return this.array.slice(0, this.length);
+    return this.array.slice(0, this.array.length);
   }
   peek() {
-    return this.length ? this.array[0] : undefined;
+    return this.array.length ? this.array[0] : undefined;
   }
   size() {
-    return this.length;
+    return this.array.length;
   }
 }
 
