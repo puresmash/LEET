@@ -18,7 +18,7 @@ function countFrequency(s: string) {
 }
 
 // Can also solve this by using
-// 1. Heap(O(n) to build the heap)
+// 1. Heap(O(n) to build the heap, but pop n times for O(logn) for each -> O(nlogn))
 // 2. Bucket sort with time complexity O(n) and space complexity O(n + k)
 // where k is the length of the string (worst case: the string is formed by the same chars).
 

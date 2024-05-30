@@ -1,4 +1,4 @@
-type Tuple = [string, number];
+type Tuple = [string | number, number];
 export class MaxHeap<T extends Tuple | number> {
   protected array: T[] = [];
   constructor(array: T[]) {
@@ -94,8 +94,8 @@ export class MinHeap<T extends Tuple | number> extends MaxHeap<T> {
  * e.g.
  * ['t', 'r', 'e', 'e'] -> Map [['t', 1], ['r', 1], ['e', 2]]
  */
-export function countFrequency(array: string[]) {
-  const freqMap = new Map<string, number>();
+export function countFrequency<T extends string | number>(array: T[]) {
+  const freqMap = new Map<T, number>();
   array.forEach(char => {
     freqMap.set(char, (freqMap.get(char) || 0) + 1);
   });
