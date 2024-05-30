@@ -1,4 +1,4 @@
-type Tuple = [string | number, number];
+type Tuple = [unknown, number];
 export class MaxHeap<T extends Tuple | number> {
   protected array: T[] = [];
   constructor(array: T[]) {
