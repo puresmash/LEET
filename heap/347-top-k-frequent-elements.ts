@@ -17,4 +17,4 @@ function topKFrequent(nums: number[], k: number): number[] {
   return result;
 }
 
-expect(topKFrequent([1, 1, 1, 2, 2, 3], 2)).to.have.members([1, 2]);
+expect(topKFrequent([1, 1, 1, 2, 2, 3], 2)).to.deep.equal([1, 2]);

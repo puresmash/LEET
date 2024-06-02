@@ -74,5 +74,5 @@ function basicStack(nums1: number[], nums2: number[]): number[] {
   return nums1.map(n1 => targetMap.get(n1)!);
 }
 
-expect(nextGreaterElement([4, 1, 2], [1, 3, 4, 2])).to.have.members([-1, 3, -1]);
-expect(nextGreaterElement([2, 4], [1, 2, 3, 4])).to.have.members([3, -1]);
+expect(nextGreaterElement([4, 1, 2], [1, 3, 4, 2])).to.deep.equal([-1, 3, -1]);
+expect(nextGreaterElement([2, 4], [1, 2, 3, 4])).to.deep.equal([3, -1]);
