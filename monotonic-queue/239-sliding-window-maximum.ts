@@ -9,8 +9,10 @@ import { Deque } from '../core/Deque.js';
  * Thoughts:
  * Brute force: O(nk) <-- iterate cost O(n) * check max in the window O(k)
  * How to optimize?
- * By the face that the previous smaller numbers in the window won't be the answer, 
- * can safely drop them from the window.
+ * 1. The previous answer could also be the answer in the future.
+ * e.g. [[1, 2, 5], 3] -> [1, [2, 5, 3]], the number 5 is the common answer.
+ * 2. The fact that the previous smaller numbers in the window won't be an answer, 
+ * can safely drop them from the possible answer in the future.
  * e.g.
  * A. [[1, 2, 5], 3, ...] <- the number 1 and 2 are lose either from position or value. 
  * Queue: [5]
