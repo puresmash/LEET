@@ -16,7 +16,7 @@ export function arrayToLinkedList(array: number[]): ListNode {
   }, null) as ListNode;
 }
 
-export function printLinkedList(headNode: ListNode | null) {
+export function linkedListToString(headNode: ListNode | null) {
   if (!headNode) return;
   const result = [];
   while(headNode.next) {
@@ -25,5 +25,9 @@ export function printLinkedList(headNode: ListNode | null) {
   }
   // last one doesn't has next, should add the last one back
   result.push(headNode.val);
-  console.log(result.join('->'));
+  return result.join('->');
+}
+
+export function printLinkedList(headNode: ListNode | null) {
+  console.log(linkedListToString(headNode));
 }
