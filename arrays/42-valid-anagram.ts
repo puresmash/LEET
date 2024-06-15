@@ -2,14 +2,14 @@ import { expect } from 'chai';
 
 /**
  * Easy
- * String, Array
+ * String, Hash Table, Array
  * Solution 1: Count the frequency of each character and compare
  * Time complexity: O(n), Space complexity: O(n)
  * Solution 2: Sort the strings and compare
  * Time complexity: O(nlogn), Space complexity: O(1)
  */
 function isAnagram(s: string, t: string): boolean {
-  // Soultion 1
+  // Solution 1
   const freqMap = new Map<string, number>();
   // Different length => not anagram
   if (s.length !== t.length) return false;
