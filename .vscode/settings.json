@@ -6,6 +6,7 @@
     ".git/objects",
     ".vscode",
     ".vscode-insiders",
-    "424-*"
+    "424-*",
+    "76-*"
   ]
 }
