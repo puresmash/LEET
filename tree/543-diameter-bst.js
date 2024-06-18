@@ -1,20 +1,8 @@
-import { TreeNode, arrayToTree } from '../lib/treeUtils.mjs';
-/* 
-543. Diameter of Binary Tree
-  time: O(N) space: O(1)
-*/
+import { TreeNode, arrayToTree } from '../core/Tree.mjs';
 
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
+ * 543. Diameter of Binary Tree
+ * Time: O(N), Space: O(1)
  */
 var diameterOfBinaryTree = function (root) {
   let max = 0;

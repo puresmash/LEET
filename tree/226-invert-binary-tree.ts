@@ -1,4 +1,4 @@
-import { TreeNode, arrayToTree, printTreeBFS } from '../lib/treeUtils.js';
+import { TreeNode, arrayToTree, printTreeBFS } from '../core/Tree.js';
 
 function invertTree(root: TreeNode | null): TreeNode | null {
   function dst(node: TreeNode) {

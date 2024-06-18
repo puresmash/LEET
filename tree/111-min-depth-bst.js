@@ -1,4 +1,4 @@
-import { printTreeBFS, arrayToTree, TreeNode } from '../lib/treeUtils.mjs';
+import { printTreeBFS, arrayToTree, TreeNode } from '../core/Tree.mjs';
 /* 
 111. Minimum Depth of Binary Tree 
 worse case

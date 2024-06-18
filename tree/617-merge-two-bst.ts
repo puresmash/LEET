@@ -1,4 +1,4 @@
-import { TreeNode, arrayToTree, printTreeBFS } from '../lib/treeUtils.js';
+import { TreeNode, arrayToTree, printTreeBFS } from '../core/Tree.js';
 /**
  * Definition for a binary tree node.
  * class TreeNode {

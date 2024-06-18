@@ -1,4 +1,4 @@
-import { TreeNode, arrayToTree } from '../lib/treeUtils.js';
+import { TreeNode, arrayToTree } from '../core/Tree.js';
 
 /**
  * backtracking method

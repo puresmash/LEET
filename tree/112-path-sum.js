@@ -1,16 +1,5 @@
-import { TreeNode, arrayToTree } from '../lib/treeUtils.mjs';
+import { TreeNode, arrayToTree } from '../core/Tree.mjs';
 
-// const tree = arrayToTree([1, 2]);
-const tree = arrayToTree([1, 2, 3]);
-
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
 /**
  * @param {TreeNode} root
  * @param {number} targetSum
@@ -31,4 +20,4 @@ var hasPathSum = function (root, targetSum) {
 };
 
 // console.log(hasPathSum(tree, 1));
-console.log(hasPathSum(tree, 3));
+console.log(hasPathSum(arrayToTree([1, 2, 3]), 3));
