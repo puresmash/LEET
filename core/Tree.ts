@@ -31,62 +31,60 @@ export class TreeNode {
 * 2. insert placeholder on the left and right child -> give child value -> iterate
 * Why not recursive? Cause the input array is in BFS format naturally
 * Input example: [x, null, null, y, z]
-* @param {[number]} inputAry 
+* @param {[number]} input
 * @returns {TreeNode}
 */
-export function arrayToTree(inputAry: (number | null)[]) {
-  if (!inputAry.length) throw Error('Empty array is not a valid input');
+export function arrayToTree(input: (number | null)[]) {
+  if (!input.length) return null;
+  // clone
+  const inputAry = input.slice(0);
   // root
   const rootVal = inputAry.shift()!;
   const rootNode = new TreeNode(rootVal, null, null);
-  // next
-  for (let treeLevel = 1, go = true, vacancies: number = 0, parentNodes = [rootNode]; go; treeLevel++) {
-    const { keepGoing, inheritedVacancies, childNodes } = traverseTreeLevel(treeLevel, vacancies, inputAry, parentNodes);
-    go = keepGoing;
-    // @ts-ignore undefined value will only happened when keepGoing equal false, which mean the value of inheritedVacancies won't be used.
-    vacancies = inheritedVacancies;
-    // @ts-ignore undefined value will only happened when keepGoing equal false, which mean the value of childNodes won't be used.
-    parentNodes = childNodes;
-  }
-
-  /** BFS */
-  function traverseTreeLevel(treeLevel: number, vacancies: number, inputAry: (number | null)[], previousNodes: TreeNode[]) {
-    if (!inputAry.length) return { keepGoing: false };
-    // how many node on this level
-    const shouldTakeCnt = calSelectionByLevel(treeLevel, vacancies);
-    // take the nodes value from the input array
-    const takeAry = inputAry.splice(0, shouldTakeCnt);
-    // how many new generated vacancies (by counting null values) on this level
-    const newVacancies = shouldTakeCnt - takeAry.filter(ele => ele !== null).length;
-    // how many inherited vacancies on the next level
-    const inheritedVacancies = calVacancies(vacancies, newVacancies);
-    const childNodes = takeAry.map(val => {
-      if (val === null) return null;
-      return new TreeNode(val, null, null);
-    });
-    // apply parent-child relationships
-    const parentNotNilNodes = previousNodes.filter(val => val !== null);
-    // check
-    if (parentNotNilNodes.length * 2 !== childNodes.length) {
-      console.error('Interior error: node structure broke, parent child mismatch');
-      console.error(`level: ${treeLevel}`);
-      console.error(`prevNodes: ${parentNotNilNodes}, previousNodes.length: ${parentNotNilNodes.length}`);
-      console.error(`newNodes: ${childNodes}, previousNodes.length: ${childNodes.length}`);
-    }
-    parentNotNilNodes.forEach((node, i) => {
-      node.left = childNodes[i * 2];
-      node.right = childNodes[i * 2 + 1];
-    });
-    return { keepGoing: true, inheritedVacancies, childNodes };
-
-  }
-  function calSelectionByLevel(currentLevel: number, prevVacancies: number) {
-    return Math.pow(2, currentLevel) - prevVacancies * 2;
-  }
-  function calVacancies(prevVacancies: number, newVacancies: number) {
-    return prevVacancies * 2 + newVacancies;
+  const parentNodes = [rootNode];
+  while (parentNodes.length) {
+    const left = inputAry.shift();
+    const right = inputAry.shift();
+    const leftNode = !left ? null : new TreeNode(left, null, null);
+    const rightNode = !right ? null : new TreeNode(right, null, null);
+    // Append new nodes to the parent
+    const parent = parentNodes.shift()!;
+    parent.left = leftNode;
+    parent.right = rightNode;
+    // Add valid new nodes to the parentNodes
+    leftNode && parentNodes.push(leftNode);
+    rightNode && parentNodes.push(rightNode);
   }
   return rootNode;
+}
+
+/**
+ *   a
+ *  / \  => [a, b, c]
+ * b   c
+ */
+export function treeToArray(tree: TreeNode | null | undefined) {
+  if (!tree) return [];
+  const result: (number | null)[] = [];
+  const level: (TreeNode | null)[] = [tree];
+  while (level.length) {
+    const node = level.shift();
+    // There is a chance need to push null value
+    //    a
+    //   / \ => [a, null, c]
+    // null c
+    result.push(node?.val ?? null);
+    if (!node) continue;
+    // Leaf
+    if (!node.left && !node.right) continue;
+    level.push(node.left);
+    level.push(node.right);
+  }
+  // Remove trailing null values
+  while (result[result.length - 1] === null) {
+    result.pop();
+  }
+  return result;
 }
 
 /* 

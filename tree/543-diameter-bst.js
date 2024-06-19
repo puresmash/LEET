@@ -1,4 +1,4 @@
-import { TreeNode, arrayToTree } from '../core/Tree.mjs';
+import { TreeNode, arrayToTree } from '../core/TreeUtils.mjs';
 
 /**
  * 543. Diameter of Binary Tree

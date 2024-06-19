@@ -1,4 +1,4 @@
-import { arrayToTree, TreeNode } from '../core/Tree.mjs';
+import { arrayToTree, TreeNode } from '../core/TreeUtils.mjs';
 /* 
 637. Average of Levels in Binary Tree
 worse case
