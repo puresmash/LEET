@@ -26,9 +26,6 @@ export class TreeNode {
 }
 
 /**
-* there are two ways to do this
-* 1. preprocess -> construct tree from the bottom
-* 2. insert placeholder on the left and right child -> give child value -> iterate
 * Why not recursive? Cause the input array is in BFS format naturally
 * Input example: [x, null, null, y, z]
 * @param {[number]} input
@@ -43,10 +40,10 @@ export function arrayToTree(input: (number | null)[]) {
   const rootNode = new TreeNode(rootVal, null, null);
   const parentNodes = [rootNode];
   while (parentNodes.length) {
-    const left = inputAry.shift();
-    const right = inputAry.shift();
-    const leftNode = !left ? null : new TreeNode(left, null, null);
-    const rightNode = !right ? null : new TreeNode(right, null, null);
+    const left = inputAry.shift() ?? null;
+    const right = inputAry.shift() ?? null;
+    const leftNode = left === null ? null : new TreeNode(left!, null, null);
+    const rightNode = right === null ? null : new TreeNode(right!, null, null);
     // Append new nodes to the parent
     const parent = parentNodes.shift()!;
     parent.left = leftNode;
@@ -75,8 +72,15 @@ export function treeToArray(tree: TreeNode | null | undefined) {
     // null c
     result.push(node?.val ?? null);
     if (!node) continue;
-    // Leaf
-    if (!node.left && !node.right) continue;
+    /*
+      Should also push child of the leaf node.
+      e.g. b is a leaf node, should keep its child as a placeholder
+           a
+          / \ 
+         b   c      => [a, b, c, null, null, d]
+        / \ / \
+       n  n d  n
+     */
     level.push(node.left);
     level.push(node.right);
   }
