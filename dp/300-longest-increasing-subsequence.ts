@@ -9,19 +9,38 @@ import { expect } from 'chai';
  * 
  * Thoughts:
  * 1. Calculate the 1D DP array from the last element.
- * => DP[n] = 1 (itself is a LIS)
- * => DP[n-1 -> n] is easy to resolve (whether choosing [n-1, n] if ↗ OR [n-1] if ↘)
- * => For DP[n-2], there are the following cases:
- *   a. choosing index n-2
- *   // The answer is already lies in the DP[n-1], if nums[n-2] < nums[n-1], we can add it as a candidate.
- *   b. choosing index [n-2, n-1, n] or [n-2, n-1]
- *   // If nums[n-2] < nums[n]
- *   c. choosing index n-2, n
- * As above, we can find there is a pattern:
- * If nums[i] < nums[j], then we can directly add DP[j] + 1 as a candidate, not recomputing nums[j -> n] again.
- * Then compare all the candidates and choose the max one by:
- * => DP[i] = Math.max(DP[i], DP[j=i+1 -> n] + 1), where nums[i] < nums[j]
- * 2. The answer is the max value in the DP array.
+ *    => DP[n] = 1 (itself is a LIS)
+ *    => DP[n-1] is easy to resolve (whether choosing [n-1, n] if ↗ OR [n-1] if ↘)
+ *    => For DP[n-2], there are the following cases:
+ *    a. Choosing index n-2
+ *       => DP[n-2] = 1 (as candidateA)
+ *    b. Choosing index (n-2, n-1, n) or (n-2, n-1)
+ *       We don't care whether choosing n, already resolved in DP[n-1].
+ *       => IF nums[n-2] < nums[n-1]
+ *          THEN DP[n-2] = DP[n-1] + 1 (as candidateB)
+ *    c. Choosing index n-2, n
+ *       => IF nums[n-2] < nums[n]
+ *          THEN DP[n-2] = DP[n] + 1 (as candidateC)
+ *    => DP[n-2] = Math.max(candidateA, candidateB, candidateC)
+ * 2. As above, we can find a pattern:
+ *    If nums[i] < nums[j], we can add DP[j] + 1 as a candidate, without iterate nums[j -> n] again.
+ *    Then compare all the candidates and choose the max one by:
+ *      DP[i] = Math.max(DP[i], DP[j=i+1 -> n] + 1), where nums[i] < nums[j]
+ * 3. The answer is the max value in the DP array.
+ *
+ * Example:
+ * Take sequence [4, 2, 1, 3] as an example:
+ * 1. First, we simplify the problem as [3], LIS([3]) = 1.
+ * 2. Then, let's discuss with [1, 3], because 1 < 3, LIS([1, 3]) = LIS([3]) + 1 = 2.
+ * 3. Again, for subsequence start from 2, let's discuss with [2, 1, 3].
+ * 3-1. Is 2 > 1? NO, so we CAN'T use the result of LIS([1, 3]).
+ * 3-2. Is 2 < 3? YES, so we CAN use the result of LIS([3]),
+ *      therefore LIS([2, 1, 3]) so far equals to LIS([3]) + 1 = 2.
+ * 4. Next will be [4, 2, 1, 3], 4 is greater than the rest, LIS([4]) = 1.
+ * 5. All the sub-problems are resolved, we get the following results:
+ *    [4, 2, 1, 3]
+ *     1, 2, 1, 2
+ * 6. Finally, compare the results and get the max value, which is 2.
  */
 function lengthOfLIS(nums: number[]): number {
   // The smallest LIS should be 1
