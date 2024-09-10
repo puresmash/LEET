@@ -3,7 +3,7 @@ import { expect } from 'chai';
 /**
  * Medium
  * Backtracking, DFS
- * Time complexity: O(n * 3^w), Space complexity: O(w), where w is the length of the searching word.
+ * Time complexity: O(n * 3^l), Space complexity: O(l), where l is the length of the searching word.
  * Means for every start point, it will have at most 3 directions to go for w times.
  * 
  * 
