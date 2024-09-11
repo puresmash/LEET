@@ -43,7 +43,7 @@ function eraseOverlapIntervals(intervals: number[][]): number {
 
 /**
  * Solution2:
- * Also record the max number of un-overlapping intervals.
+ * Also record the max number of non-overlapping intervals.
  * Time complexity: O(nlogn), Space complexity: O(n)
  */
 function solution2(intervals: number[][]): number {
