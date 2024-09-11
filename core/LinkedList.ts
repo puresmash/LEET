@@ -1,4 +1,9 @@
-export class ListNode {
+export interface BaseListNode {
+  val: number;
+  next: BaseListNode | null;
+}
+
+export class ListNode implements BaseListNode {
   val: number
   next: ListNode | null
   constructor(val?: number, next?: ListNode | null) {
@@ -16,8 +21,8 @@ export function arrayToLinkedList(array: number[]): ListNode {
   }, null) as ListNode;
 }
 
-export function linkedListToString(headNode: ListNode | null) {
-  if (!headNode) return;
+export function linkedListToString(headNode: BaseListNode | null) {
+  if (!headNode) return '';
   const result = [];
   while(headNode.next) {
     result.push(headNode.val);
@@ -28,6 +33,6 @@ export function linkedListToString(headNode: ListNode | null) {
   return result.join('->');
 }
 
-export function printLinkedList(headNode: ListNode | null) {
+export function printLinkedList(headNode: BaseListNode | null) {
   console.log(linkedListToString(headNode));
 }
