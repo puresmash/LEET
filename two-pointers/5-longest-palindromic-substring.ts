@@ -19,7 +19,7 @@ import { expect } from 'chai';
  *      i   C   j   r  
  *  If C is the center of the current maximum palindrome,
  *    r is the right boundary of the palindrome.
- *  The palindrome radius of j should at least equal than the palindrome radius of i.
+ *  The palindrome radius of j should at least equal to the palindrome radius of i.
  *  Therefore, we can use the symmetry of the palindrome to avoid unnecessary calculation.
  *  Implementation:
  *    https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/

@@ -7,7 +7,7 @@ import { expect } from 'chai';
  * -> O(n) + O(n/2) + O(n/4) + ... = O(2n) ~ O(n)
  * Space complexity: O(1)
  * -> in-place quick sort
- * p.s. Beware of the worst case, it coult easily happen if there are tons of duplicates in a sequence,
+ * p.s. Beware of the worst case, it could easily happen if there are tons of duplicates in a sequence,
  *      this will make this solution fall back to O(n^2) easily.
  *      To avoid this, we can use a random pivot to make it more balanced.
  *      Or, when we hit "equal to pivot" situation, we can give it a 50% chance to swap or not.
