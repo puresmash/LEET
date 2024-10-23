@@ -1,9 +1,14 @@
+import { expect } from 'chai';
+
 /**
-  Time: O(n), Space: O(1)
-  e.g. [1, 0, 3, 0, 5]
-  同最直觀的想法：把所有0先拿掉，非0的值往前擠 -> [1, 3, 5]，再在之後補對應數量的0 -> [1, 3, 5, 0, 0]
-  Coding: 從最左開始掃描，每次當碰到0，則以其所在位置之後最近的非0與之交換
-  [1, 0, 3, 0, 5] -> [1, 3, 0, 0, 5] -> [1, 3, 5, 0, 0]
+ * 283. Move Zeroes
+ * Easy
+ * Two Pointers
+ * Time complexity: O(n), Space complexity: O(1)
+ * e.g. [1, 0, 3, 0, 5]
+ * 同最直觀的想法：把所有0先拿掉，非0的值往前擠 -> [1, 3, 5]，再在之後補對應數量的0 -> [1, 3, 5, 0, 0]
+ * Coding: 從最左開始掃描，每次當碰到0，則以其所在位置之後最近的非0與之交換
+ * [1, 0, 3, 0, 5] -> [1, 3, 0, 0, 5] -> [1, 3, 5, 0, 0]
  */
 function moveZeroes(nums: number[]): void {
   // l means zero pointer, r means non-zero pointer
@@ -26,5 +31,4 @@ function moveZeroes(nums: number[]): void {
 
 const ary = [0, 1, 0, 3, 12];
 moveZeroes(ary);
-console.log(ary);
-
+expect(ary).to.deep.equal([1, 3, 12, 0, 0]);
