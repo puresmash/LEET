@@ -3,7 +3,7 @@ import { expect } from 'chai';
 /**
  * Medium
  * Intervals
- * Time complexity: O(n), Space complexity: O(n)
+ * Time complexity: O(n), Space complexity: O(1)
  * Through iteration, there are only 3 possible cases:
  * 1. New interval is non-overlapping and in front of the current interval
  *          o---o

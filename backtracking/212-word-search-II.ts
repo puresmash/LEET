@@ -15,6 +15,7 @@ import { expect } from 'chai';
  * 可以將 Trie 想像成一條由每個 `word` 提前鑿成的河道。 
  * 試著將 Board 中，所有字母的排列組合依序注入河道中，看看最終是否可以到達河道的 isWord 檢查點。如果可以，就是一個合法的字。
  * 如果不行，提前返回，避免無謂的遞迴。`
+ * Concept is similar to Huffman decoding.
  * 
  * Improvement:
  * Some of the test cases will lead to a time limit exceeded,

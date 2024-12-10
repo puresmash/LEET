@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import { Deque } from '../core/Deque.js';
 
 /**
+ * 239. Sliding Window Maximum
+ * HackerRank: Queries with Fixed Length
  * Hard
  * Monotonic queue, Deque
  * Time complexity: O(n), Space complexity: O(k)

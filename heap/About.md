@@ -10,7 +10,7 @@
 
 ### Else
 
-- Top k elements of n elements: O(klogn) <- O(logn) \* k
+- Top k elements of n elements: O(klogn) <- O(logn) * k
 
 ## Implement Heap
 

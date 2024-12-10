@@ -2,6 +2,7 @@ import { expect } from 'chai';
 
 /**
  * 53. Maximum Subarray
+ * HackerRank: The Maximum Subarray
  * Medium
  * DP, Divide and Conquer, Kadane's Algorithm
  * Time complexity: O(n), Space complexity: O(1)

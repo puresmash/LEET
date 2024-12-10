@@ -3,8 +3,8 @@ import { expect } from 'chai';
 /**
  * Medium
  * String, Hash Table, Sorting
- * Time complexity: O(mnlogn), Space complexity: O(mn),
- * where m is the length of the word list, n is the average length of a string.
+ * Time complexity: O(n * mlogm), Space complexity: O(nm),
+ * where n is the length of the word list, m is the average length of a string.
  * 
  * Steps:
  * 1. Use the sorted word as the group key of the hash map.

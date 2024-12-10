@@ -9,11 +9,16 @@ import { expect } from 'chai';
  * Thought:
  * The units digit should << 31, the tens digit should << 30, and so on.
  * The rest is how to make it happen, might have many ways.
+ * 
+ * Bit Mask:
+ * - & 0b1 to get the last bit
+ * - ^ 0b1 to flip the last bit
  */
 function reverseBits(n: number): number {
   let result = 0;
   for (let i = 0; i < 32; i++) {
     // Use `<<` to move and create space for the next bit
+    // Should only been executed 31 times
     result <<= 1;
     // Use `+` or `|` to add the last bit to the result
     result += (n & 0b1);

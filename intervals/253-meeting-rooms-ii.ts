@@ -12,6 +12,7 @@ class Interval {
 
 /**
  * 253. Meeting Rooms II
+ * HackerRank: Array Manipulation
  * Medium
  * Intervals, Two Pointers, Heap
  * Time complexity: O(nlogn), Space complexity: O(n)
